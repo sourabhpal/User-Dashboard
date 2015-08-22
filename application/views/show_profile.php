@@ -25,6 +25,12 @@
      <div id="navbar" class="navbar-collapse collapse">
        <ul class="nav navbar-nav">
         <li><a href="/main">Home</a></li>
+        <?php 
+          if($this->session->userdata('LoggedIn')){
+            echo "<li><a href='/users/show_users'>Dashboard</a></li>";
+            echo "<li class='active'><a href='/main/show_profile/" . $this->session->userdata('current_user_id') ."'>Profile</a></li>";
+          }
+        ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <li><a href="/users/logoff">Log off</a></li>

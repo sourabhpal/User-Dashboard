@@ -34,8 +34,9 @@
   <div class="main-container">
     <div class="container">
        <?php 
-      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin' && $this->session->userdata('current_user_id')!=$id){
         echo "<h3>Edit user #(" . $id . ")</h3>";
+        echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
       }
       else{
         echo "<h3>Edit Profile</h3>";
@@ -91,6 +92,10 @@
     </div>
       </div>
     </div> <!-- /container -->
+    
+    <?php
+    if($this->session->userdata('current_user_id') == strval($id)){
+    ?>
     <div class="container">
       <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
         <div class="form-group">
@@ -102,7 +107,9 @@
         </div>
       </form>
     </div>
+    <?php 
+    }
+    ?>
   </div>
-
 </body>
 </html>

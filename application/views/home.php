@@ -24,10 +24,12 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a href="">Home</a></li>
-          <li><a href="/users/show_users">Show Users</a></li>
-          <li><a href="/users/register">Register</a></li>
-          <li><a href="/users/edit_user">Edit User</a></li>
-          <li><a href="/main/show_profile">Show Profile</a></li>
+          <?php 
+          if($this->session->userdata('LoggedIn')){
+            echo "<li><a href='/users/show_users'>Dashboard</a></li>";
+            echo "<li><a href='/main/show_profile/" . $this->session->userdata('current_user_id') ."'>Profile</a></li>";
+          }
+          ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/users/signin">Sign in</a></li>

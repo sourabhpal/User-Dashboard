@@ -18,6 +18,7 @@ class Users extends CI_Controller {
 		if($user){
 			$this->session->set_userdata('user_level', $user['user_level']);
 			$this->session->set_userdata('LoggedIn', true);
+			$this->session->set_userdata('current_user_id', $user['id']);
 			$this->show_users();
 		}
 		else{
@@ -35,7 +36,12 @@ class Users extends CI_Controller {
 	{
 		$this->User->add_user($this->input->post());
 		//add logic to check if the query insertion was successful, maybe show success message alert
-		$this->signin();
+		if($this->session->userdata('LoggedIn')){
+			$this->show_users();
+		}
+		else{
+			$this->signin();
+		}
 	}
 
 	public function show_users()
