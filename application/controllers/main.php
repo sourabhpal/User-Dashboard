@@ -91,9 +91,10 @@ class Main extends CI_Controller {
 
 	}
 
-	public function remove_user_action()
+	public function remove_user_action($user_id)
 	{
-
+		$this->User->delete_user_by_id($user_id);
+		$this->show_users();
 	}
 
 	public function show_profile()
