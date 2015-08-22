@@ -31,13 +31,13 @@ class User extends CI_Model{
 	{
 		return $this->db->query("DELETE FROM users WHERE id = ?", $user_id);	
 	}
-	function update_user($info)
+	function update_user($user_id, $info)
 	{
-		$userInfo = $this->get_user_by_id($user['id']);
-		foreach($info as $i){
-			$userInfo[$i] = $user[$i];
+		$userInfo = $this->get_user_by_id($user_id);
+		foreach($info as $key => $value){
+			$userInfo[$key] = $info[$key];
 		}
-		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, description = ?, user_level = ? password = ?, updated_at = NOW() WHERE id = ?";
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, description = ?, user_level = ?, password = ?, updated_at = NOW() WHERE id = ?";
 		$values = array($userInfo['first_name'], $userInfo['last_name'], $userInfo['email'], $userInfo['description'], $userInfo['user_level'], $userInfo['password'], $userInfo['id']);
 		return $this->db->query($query, $values);
 	}

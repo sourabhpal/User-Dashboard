@@ -83,14 +83,16 @@ class Users extends CI_Controller {
 		$this->show_users();
 	}
 
-	public function edit_user()
+	public function edit_user($user_id)
 	{
-		$this->load->view('edit_user');
+		$user = $this->User->get_user_by_id($user_id);
+		$this->load->view('edit_user', $user);
 	}
 
-	public function edit_user_action()
+	public function edit_user_action($user_id)
 	{
-
+		$this->User->update_user($user_id, $this->input->post());
+		$this->show_users();
 	}
 
 	public function remove_user_action($user_id)

@@ -50,6 +50,15 @@
       ?>
     </div>
     <div class="container">
+      <?php 
+      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+        echo "<h3>Add a new user</h3>";
+        echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
+      }
+      else{
+        echo "<h3>Register</h3>";
+      }
+      ?>
       <form class="form-horizontal" roll='form' action='/users/register_action' method='post'>
         <div class="form-group">
           <label>Email Address: </label>
@@ -72,12 +81,24 @@
           <input type="password" class="form-control" name="passwordconf" required>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary">Register</button>
+          <button type="submit" class="btn btn-lg btn-primary">
+            <?php 
+            if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+              echo "Create";
+            }
+            else{
+              echo "Register";
+            }
+            ?>
+          </button>
         </div>
       </form>
-      <a href="/users/signin">Already have an account? Login</a>
+      <?php 
+      if(!($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin')){
+        echo "<a href='/users/signin'>Already have an account? Login</a>";
+      }
+      ?>
     </div> <!-- /container -->
   </div>
-
 </body>
 </html>

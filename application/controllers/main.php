@@ -15,9 +15,10 @@ class Main extends CI_Controller {
 		$this->load->view('home');
 	}
 
-	public function show_profile()
+	public function show_profile($user_id)
 	{
-		$this->load->view('show_profile');
+		$user = $this->User->get_user_by_id($user_id);
+		$this->load->view('show_profile', $user);
 	}
 
 }

@@ -33,35 +33,49 @@
   </nav>
   <div class="main-container">
     <div class="container">
+       <?php 
+      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+        echo "<h3>Edit user #(" . $id . ")</h3>";
+      }
+      else{
+        echo "<h3>Edit Profile</h3>";
+      }
+      ?>
       <div class="row">
         <div class="col-md-6">
-      <form class="form-horizontal" roll='form' action='/edit_user_action' method='post'>
+      <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
         <div class="form-group">
           <label>Email Address: </label>
-          <input type="email" class="form-control" name="email" required>
+          <input type="email" class="form-control" name="email" value="<?php echo $email; ?>"required>
         </div>
         <div class="form-group">
           <label>First Name: </label>
-          <input type="text" class="form-control" name="first_name" required>
+          <input type="text" class="form-control" name="first_name" value="<?php echo $first_name;?>" required>
         </div>
         <div class="form-group">
           <label>Last Name: </label>
-          <input type="text" class="form-control" name="last_name" required>
+          <input type="text" class="form-control" name="last_name" value="<?php echo $last_name;?>" required>
         </div>
+      <?php 
+      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+        ?>
         <div class="form-group">
           <label>User Level</label>
-          <select class="form-control" name="user_level" required>
+          <select class="form-control" name="user_level" value="<?php echo $user_level;?>" required>
             <option>Normal</option>
             <option>Admin</option>
           </select>
         </div>
+        <?php
+      }
+      ?>       
         <div class="form-group">
           <button type="submit" class="btn btn-lg btn-primary">Save</button>
         </div>
       </form>
     </div>
     <div class="col-md-6">
-      <form class="form-horizontal" roll='form' action='/change_password' method='post'>
+      <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
         <div class="form-group">
           <label>Password: </label>
           <input type="password" class="form-control" name="password" required>
@@ -77,6 +91,17 @@
     </div>
       </div>
     </div> <!-- /container -->
+    <div class="container">
+      <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
+        <div class="form-group">
+          <label>Description: </label>
+          <textarea class="form-control" rows="5" name="description"><?php echo $description;?></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
   </div>
 
 </body>

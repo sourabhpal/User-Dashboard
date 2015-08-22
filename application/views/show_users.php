@@ -47,6 +47,7 @@
     <?php 
     if($this->session->userdata('user_level') == 'Admin'){
       echo "<h3>Manage Users</h3>";
+      echo "<a class='pull-right' href='/users/register'>Add new</a>";
     }
     else{
       echo "<h3>All Users</h3>";
@@ -72,7 +73,7 @@
         foreach($id as $key => $value){
           echo "<tr>";;
           echo "<td>" . $value . "</td>";
-          echo "<td>" . $first_name[$key] . " " . $last_name[$key]. "</td>";
+          echo "<td><a href='/main/show_profile/" . $value . "'>" . $first_name[$key] . " " . $last_name[$key]. "</a></td>";
           echo "<td>" . $email[$key] . "</td>";
           echo "<td>" . $created_at[$key] . "</td>";
           echo "<td>" . $user_level[$key] . "</td>";

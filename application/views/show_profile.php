@@ -34,23 +34,24 @@
 </nav>
 <div class="main-container">
   <div class="container">
-    <h3>Michael Choi</h3>
+    <a href="/users/edit_user/<?php echo $id; ?>">Edit Profile</a>
+    <h3><?php echo $first_name . " " . $last_name; ?></h3>
     <table>
     <tr>
       <td>Registered at: </td>
-      <td>December 24th 2012</td>
+      <td><?php echo $created_at; ?></td>
     </tr>
     <tr>
       <td>User ID: </td>
-      <td>#1</td>
+      <td><?php echo $id; ?></td>
     </tr>
     <tr>
       <td>Email Address: </td>
-      <td>michael@village88.com</td>
+      <td><?php echo $email; ?></td>
     </tr>
     <tr>
       <td>Description: </td>
-      <td>I am happy to be here!</td>
+      <td><?php echo $description; ?></td>
     </tr>
   </table>
   </div> <!-- /container -->
