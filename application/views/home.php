@@ -19,11 +19,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Test App</a>
+        <a class="navbar-brand" href="">Test App</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class="active"><a href="">Home</a></li>
+          <li><a href="/main/show_users">Show Users</a></li>
+          <li><a href="/main/register">Register</a></li>
+          <li><a href="/main/edit_user">Edit User</a></li>
+          <li><a href="/main/show_profile">Show Profile</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/main/signin">Sign in</a></li>
@@ -31,18 +35,16 @@
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
   </nav>
-
   <div class="main-container">
     <div class="container">
       <div class="jumbotron">
-        <h1>Welcome to the Test</h1>
-        <p>We are going to build a cool application using a MVC framework! This application was built with the Village88 folks!</p>
+        <h1>Sourabh is not helping</h1>
+        <p>This assignment is so freaking long i'm so tired but i want to finish</p>
         <p>
           <a class="btn btn-lg btn-primary" href="" role="button">Start</a>
         </p>
       </div>
     </div> <!-- /container -->
-
     <div class="container">
       <div class="row">
         <div class="col-md-4">
