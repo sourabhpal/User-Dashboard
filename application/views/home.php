@@ -24,13 +24,13 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a href="">Home</a></li>
-          <li><a href="/main/show_users">Show Users</a></li>
-          <li><a href="/main/register">Register</a></li>
-          <li><a href="/main/edit_user">Edit User</a></li>
+          <li><a href="/users/show_users">Show Users</a></li>
+          <li><a href="/users/register">Register</a></li>
+          <li><a href="/users/edit_user">Edit User</a></li>
           <li><a href="/main/show_profile">Show Profile</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/main/signin">Sign in</a></li>
+          <li><a href="/users/signin">Sign in</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container -->

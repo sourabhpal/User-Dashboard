@@ -26,14 +26,14 @@
           <li><a href="/main">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/main/signin">Sign in</a></li>
+          <li><a href="/users/signin">Sign in</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
   </nav>
   <div class="main-container">
     <div class="container">
-      <form class="form-horizontal" roll='form' action='/main/signin_action' method='post'>
+      <form class="form-horizontal" roll='form' action='/users/signin_action' method='post'>
         <div class="form-group">
           <label>Email Address: </label>
           <input type="email" class="form-control" name="email" required>
@@ -46,7 +46,7 @@
           <button type="submit" class="btn btn-lg btn-primary">Sign In</button>
         </div>
       </form>
-      <a href="/main/register">Don't have an account? Register</a>
+      <a href="/users/register">Don't have an account? Register</a>
     </div> <!-- /container -->
   </div>
 

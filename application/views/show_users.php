@@ -29,7 +29,7 @@
         <li><a href="/main">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       <li><a href="/main/signin">Sign in</a></li>
+       <li><a href="/users/signin">Sign in</a></li>
      </ul>
    </div><!--/.nav-collapse -->
  </div><!--/.container -->
@@ -57,7 +57,7 @@
           echo "<td>" . $email[$key] . "</td>";
           echo "<td>" . $created_at[$key] . "</td>";
           echo "<td>" . $user_level[$key] . "</td>";
-          echo "<td><a href='/main/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
+          echo "<td><a href='/users/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
           echo "</tr>";
           ?>
           <!-- Modal -->
@@ -73,7 +73,7 @@
                   <p>Are you sure?</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default yes" onclick="location.href='/main/remove_user_action/<?php echo $value;?>'">Yes</button>
+                  <button type="button" class="btn btn-default yes" onclick="location.href='/users/remove_user_action/<?php echo $value;?>'">Yes</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
               </div>
