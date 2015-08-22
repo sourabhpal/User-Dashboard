@@ -33,7 +33,7 @@
   </nav>
   <div class="main-container">
     <div class="container">
-      <form class="form-horizontal" roll='form' action='/login' method='post'>
+      <form class="form-horizontal" roll='form' action='/main/register_action' method='post'>
         <div class="form-group">
           <label>Email Address: </label>
           <input type="email" class="form-control" name="email" required>
@@ -58,7 +58,7 @@
           <button type="submit" class="btn btn-lg btn-primary">Register</button>
         </div>
       </form>
-      <a href="">Already have an account? Login</a>
+      <a href="/main/signin">Already have an account? Login</a>
     </div> <!-- /container -->
   </div>
 

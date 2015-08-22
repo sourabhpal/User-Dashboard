@@ -14,6 +14,7 @@
 		}
 		function add_user($user)
 		{
+			//need to add form validation here
 		 $query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (?,?,?,?,NOW(), NOW())";
 		 $values = array($user['first_name'], $user['last_name'], $user['email'], $user['password']); 
 		 return $this->db->query($query, $values);

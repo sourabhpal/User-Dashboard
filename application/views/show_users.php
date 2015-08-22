@@ -47,14 +47,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Sue Su</td>
-          <td>suesu@sue.su</td>
-          <td>Aug 21, 2015</td>
-          <td>admin</td>
-          <td><a href="/main/edit_user">edit</a> | <a href="">remove</a></td>
-        </tr>
+        <?php 
+        foreach($id as $key => $value){
+          echo "<tr>";
+          echo "<td>" . $value . "</td>";
+          echo "<td>" . $first_name[$key] . $last_name[$key]. "</td>";
+          echo "<td>" . $email[$key] . "</td>";
+          echo "<td>" . $created_at[$key] . "</td>";
+          echo "<td>" . $user_level[$key] . "</td>";
+          echo "<td><a href='/main/edit_user/{$value}'>edit</a> | <a href=''>remove</a></td>";
+          echo "</tr>";
+        }
+         ?>
       </tbody>
     </table>
   </div> <!-- /container -->
