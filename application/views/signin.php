@@ -33,6 +33,23 @@
   </nav>
   <div class="main-container">
     <div class="container">
+      <?php 
+      if ($this->session->userdata('error'))
+      {
+        ?>
+        <div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Error!</strong>
+          <?php 
+          echo $this->session->userdata('error');
+          ?>
+        </div>
+        <?php
+        $this->session->unset_userdata('error');
+      }
+      ?>
+    </div>
+    <div class="container">
       <form class="form-horizontal" roll='form' action='/users/signin_action' method='post'>
         <div class="form-group">
           <label>Email Address: </label>

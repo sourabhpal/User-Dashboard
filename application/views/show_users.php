@@ -29,14 +29,29 @@
         <li><a href="/main">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       <li><a href="/users/signin">Sign in</a></li>
+        <?php 
+          if($this->session->userdata('LoggedIn')){
+            echo "<li><a href='/users/logoff'>Log off</a></li>";
+          }
+          else
+          {
+            echo "<li><a href='/users/signin'>Sign in</a></li>";
+          }
+         ?>
      </ul>
    </div><!--/.nav-collapse -->
  </div><!--/.container -->
 </nav>
 <div class="main-container">
   <div class="container">
-    <h3>Manage Users</h3>
+    <?php 
+    if($this->session->userdata('user_level') == 'Admin'){
+      echo "<h3>Manage Users</h3>";
+    }
+    else{
+      echo "<h3>All Users</h3>";
+    }
+    ?>
     <table class="table">
       <thead>
         <tr>
@@ -45,7 +60,11 @@
           <td>email</td>
           <td>created_at</td>
           <td>user_level</td>
-          <td>actions</td>
+          <?php 
+          if($this->session->userdata('user_level') == 'Admin'){
+          echo "<td>actions</td>";
+          }
+           ?>
         </tr>
       </thead>
       <tbody>
@@ -57,7 +76,9 @@
           echo "<td>" . $email[$key] . "</td>";
           echo "<td>" . $created_at[$key] . "</td>";
           echo "<td>" . $user_level[$key] . "</td>";
-          echo "<td><a href='/users/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
+          if($this->session->userdata('user_level') == 'Admin'){
+            echo "<td><a href='/users/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
+          }
           echo "</tr>";
           ?>
           <!-- Modal -->

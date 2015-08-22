@@ -14,7 +14,16 @@ class Users extends CI_Controller {
 	}
 
 	public function signin_action(){
-
+		$user = $this->User->get_user($this->input->post());
+		if($user){
+			$this->session->set_userdata('user_level', $user['user_level']);
+			$this->session->set_userdata('LoggedIn', true);
+			$this->show_users();
+		}
+		else{
+			$this->session->set_userdata('error', 'No matching record found!');
+			$this->signin();
+		}
 	}
 
 	public function register()
@@ -97,5 +106,3 @@ class Users extends CI_Controller {
 	}
 
 }
-
-//end of main controller

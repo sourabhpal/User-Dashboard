@@ -18,5 +18,3 @@ class Posts extends CI_Controller {
 
 	}
 }
-
-//end of main controller

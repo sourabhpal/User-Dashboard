@@ -20,5 +20,3 @@ class Comments extends CI_Controller {
 	}
 	
 }
-
-//end of main controller
