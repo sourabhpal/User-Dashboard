@@ -33,4 +33,16 @@ class Main extends CI_Controller {
 		return $newPosts;
 	}
 
+	public function add_post($wall_id)
+	{
+		$post = $this->input->post();
+		$this->Post->add_post($wall_id, $post);
+		$this->show_profile($wall_id);
+	}
+
+	public function add_comment_to_post($wall_id, $post_id)
+	{
+		$this->Comment->add_comment_to_post($this->input->post('comment'), $post_id);
+		$this->show_profile($wall_id);
+	}
 }

@@ -4,16 +4,19 @@ class User extends CI_Model{
 	{
 		return $this->db->query("SELECT * FROM users")->result_array();
 	}
+
 	function get_user($post)
 	{
 		$email = $post['email'];
 		$password = $post['password'];
 		return $this->db->query("SELECT * FROM users WHERE email = ? and password = ?", array($email, $password))->row_array();
 	}
+
 	function get_user_by_id($id)
 	{
 		return $this->db->query("SELECT * FROM users WHERE id = ?", array($id))->row_array();
 	}
+
 	function add_user($user)
 	{
 		//need to add form validation here
@@ -27,10 +30,12 @@ class User extends CI_Model{
 		$values = array($user['first_name'], $user['last_name'], $user['email'], $user['password'], $user_level); 
 		return $this->db->query($query, $values);
 	} 
+
 	function delete_user_by_id($user_id)
 	{
 		return $this->db->query("DELETE FROM users WHERE id = ?", $user_id);	
 	}
+	
 	function update_user($user_id, $info)
 	{
 		$userInfo = $this->get_user_by_id($user_id);

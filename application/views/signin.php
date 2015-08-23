@@ -66,6 +66,5 @@
       <a href="/users/register">Don't have an account? Register</a>
     </div> <!-- /container -->
   </div>
-
 </body>
 </html>

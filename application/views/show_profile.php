@@ -61,7 +61,7 @@
     </tr>
   </table>
   <h4>Post a message for <?php echo $first_name; ?></h4>
-  <form class="form-group" action="/posts/add_post/<?php echo $id; ?>" method="post">
+  <form class="form-group" action="/main/add_post/<?php echo $id; ?>" method="post">
     <textarea class="form-control" name="post" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
     <button type="submit" id="post_button" class="btn btn-info">Post <span class="glyphicon glyphicon-pencil"></span></button>
   </form>
@@ -83,7 +83,7 @@
       }
       ?>
       <div class='container container-comment'>
-      <form class="form-group" action="/comments/add_comment_to_post/<?php echo $value['postID']; ?>" method="post">
+      <form class="form-group" action="/main/add_comment_to_post/<?php echo $id; ?>/<?php echo $value['postID']; ?>" method="post">
         <textarea class="form-control" name="comment" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
         <button type="submit" id="comment_button" class="btn btn-info">Comment <span class="glyphicon glyphicon-comment"></span></button>
       </form>
