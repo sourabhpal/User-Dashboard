@@ -8,10 +8,6 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/assets/style.css">
   <style>
-    #post_button {
-      float: right;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -65,12 +61,38 @@
     </tr>
   </table>
   <h4>Post a message for <?php echo $first_name; ?></h4>
-  <form class="form-group" action="" method="post">
-    <input class="form-control" type="hidden" action="action" value="post_message">
-    <textarea class="form-control" name="message" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
-    <button id="post_button" class="btn btn-info">Post <span class="glyphicon glyphicon-pencil"></span></button>
+  <form class="form-group" action="/posts/add_post/<?php echo $id; ?>" method="post">
+    <textarea class="form-control" name="post" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
+    <button type="submit" id="post_button" class="btn btn-info">Post <span class="glyphicon glyphicon-pencil"></span></button>
   </form>
   </div> <!-- /container -->
+    <?php 
+    foreach($posts as $key => $value){
+      echo "<div class='container container-post'>";
+      echo "<div class='panel panel-default'>";
+      echo "<div class='panel-heading'><h5>" . $value['first_name'] . " " . $value['last_name'] . ' wrote:';
+      echo "<span class='pull-right'>" . $value['created_at'] . '</span></h5></div>';
+      echo "<div class='panel-body'>" . $value['post'] . "</div></div>";
+      foreach($value['comments'] as $c){
+        echo "<div class='container container-comment'>";
+        echo "<div class='panel panel-default'>";
+        echo "<div class='panel-heading'>" . $c['first_name'] . " " . $c['last_name'] . ' wrote:';
+        echo "<span class='pull-right'>" . $c['created_at'] . '</span></div>';
+        echo "<div class='panel-body'>" . $c['comment'] . "</div></div>";
+        echo "</div>";
+      }
+      ?>
+      <div class='container container-comment'>
+      <form class="form-group" action="/posts/add_comment/<?php echo $value['postID']; ?>" method="post">
+        <textarea class="form-control" name="post" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
+        <button type="submit" id="comment_button" class="btn btn-info">Comment <span class="glyphicon glyphicon-comment"></span></button>
+      </form>
+    </div>
+      <?php
+      echo "</div></div>";
+    }
+     ?>
+  </div>
 </div>
 </body>
 </html>

@@ -14,3 +14,25 @@
 	color: white;
 	background-position: 0% 50%;
 }
+
+#post_button {
+      float: right;
+      margin-top: 10px;
+}
+
+#comment_button {
+	float: right;
+}
+
+.panel-default {
+	margin: 5px auto;
+}
+
+.container-post {
+    margin: 20px auto;
+}
+
+.container-comment {
+	width: 99%;
+	margin-right: 0;
+}

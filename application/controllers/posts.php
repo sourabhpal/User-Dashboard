@@ -6,15 +6,14 @@ class Posts extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Post');
+		$this->load->model('User');
 	}
 
-	public function add_post()
+	public function add_post($wall_id)
 	{
-		//do some database crap to insert posts
-		$this->load->view('show_profile');
-	}
-
-	public function show_posts(){
-
+		$post = $this->input->post();
+		$this->Post->add_post($wall_id, $post);
+		echo "post added";
+		// $this->show_profile($wall_id);
 	}
 }
