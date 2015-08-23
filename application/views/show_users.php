@@ -49,6 +49,40 @@
  </div><!--/.container -->
 </nav>
 <div class="main-container">
+    <div class="container">
+      <?php 
+      if ($this->session->userdata('success'))
+      {
+        ?>
+        <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Nice!</strong>
+          <?php 
+          foreach($this->session->userdata('success') as $s){
+            echo $s;
+          }
+          ?>
+        </div>
+        <?php
+        $this->session->unset_userdata('success');
+      }
+      if ($this->session->userdata('errors'))
+      {
+        ?>
+        <div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Error!</strong>
+          <?php 
+          foreach($this->session->userdata('errors') as $error){
+            echo $error;
+          }
+          ?>
+        </div>
+        <?php
+        $this->session->unset_userdata('errors');
+      }
+      ?>
+    </div>
   <div class="container">
     <?php 
     if($this->session->userdata('user_level') == 'Admin'){

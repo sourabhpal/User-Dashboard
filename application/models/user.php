@@ -19,7 +19,6 @@ class User extends CI_Model{
 
 	function add_user($user)
 	{
-		//need to add form validation here
 		if($this->get_all_users()){
 			$user_level = "Normal";
 		}
@@ -45,6 +44,50 @@ class User extends CI_Model{
 		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, description = ?, user_level = ?, password = ?, updated_at = NOW() WHERE id = ?";
 		$values = array($userInfo['first_name'], $userInfo['last_name'], $userInfo['email'], $userInfo['description'], $userInfo['user_level'], $userInfo['password'], $userInfo['id']);
 		return $this->db->query($query, $values);
+	}
+
+	function validate($post){
+		$this->form_validation->set_rules('first_name', 'First Name', 'trim|max_length[45]|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|max_length[45]|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[255]|is_unique[users.email]');
+		$this->form_validation->set_message('email', 'The email has been registered by another user!');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[45]|matches[passwordconf]');
+		$this->form_validation->set_rules('passwordconf', 'Password Confirmation', 'trim|required');
+		if($this->form_validation->run()) {
+			return "valid";
+		} else {
+			return array(validation_errors());
+		}
+	}
+
+	function validate_basic($post){
+		$this->form_validation->set_rules('first_name', 'First Name', 'trim|max_length[45]|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|max_length[45]}required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_message('is_unique', 'The email has been registered by another user!');
+		if($this->form_validation->run()) {
+			return "valid";
+		} else {
+			return array(validation_errors());
+		}
+	}
+
+	function validate_password($post){
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[45]|matches[passwordconf]');
+		$this->form_validation->set_rules('passwordconf', 'Password Confirmation', 'trim|required');
+		if($this->form_validation->run()) {
+			return "valid";
+		} else {
+			return array(validation_errors());
+		}
+	}
+	function validate_description($post){
+		$this->form_validation->set_rules('description', 'Description', 'trim|max_length[255]|required');
+		if($this->form_validation->run()) {
+			return "valid";
+		} else {
+			return array(validation_errors());
+		}
 	}
 }
 ?>

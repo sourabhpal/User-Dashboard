@@ -33,71 +33,109 @@
   </nav>
   <div class="main-container">
     <div class="container">
-       <?php 
-      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin' && $this->session->userdata('current_user_id')!=$id){
-        echo "<h3>Edit user #(" . $id . ")</h3>";
-        echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
-      }
-      else{
-        echo "<h3>Edit Profile</h3>";
-      }
-      ?>
-      <div class="row">
-        <div class="col-md-6">
-      <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
-        <div class="form-group">
-          <label>Email Address: </label>
-          <input type="email" class="form-control" name="email" value="<?php echo $email; ?>"required>
-        </div>
-        <div class="form-group">
-          <label>First Name: </label>
-          <input type="text" class="form-control" name="first_name" value="<?php echo $first_name;?>" required>
-        </div>
-        <div class="form-group">
-          <label>Last Name: </label>
-          <input type="text" class="form-control" name="last_name" value="<?php echo $last_name;?>" required>
-        </div>
       <?php 
-      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+      if ($this->session->userdata('success'))
+      {
         ?>
-        <div class="form-group">
-          <label>User Level</label>
-          <select class="form-control" name="user_level" value="<?php echo $user_level;?>" required>
-            <option>Normal</option>
-            <option>Admin</option>
-          </select>
+        <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Nice!</strong>
+          <?php 
+          foreach($this->session->userdata('success') as $s){
+            echo $s;
+          }
+          ?>
         </div>
         <?php
+        $this->session->unset_userdata('success');
       }
-      ?>       
-        <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary">Save</button>
+      if ($this->session->userdata('errors'))
+      {
+        ?>
+        <div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Error!</strong>
+          <?php 
+          foreach($this->session->userdata('errors') as $error){
+            echo $error;
+          }
+          ?>
         </div>
-      </form>
+        <?php
+        $this->session->unset_userdata('errors');
+        $this->session->unset_userdata('success');
+      }
+      ?>
     </div>
-    <div class="col-md-6">
-      <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
-        <div class="form-group">
-          <label>Password: </label>
-          <input type="password" class="form-control" name="password" required>
-        </div>
-        <div class="form-group">
-          <label>Password Confirmation: </label>
-          <input type="password" class="form-control" name="passwordconf" required>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary">Update Password</button>
-        </div>
-      </form>
-    </div>
+    <div class="container">
+     <?php 
+     if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin' && $this->session->userdata('current_user_id')!=$id){
+      echo "<h3>Edit user #(" . $id . ")</h3>";
+      echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
+    }
+    else{
+      echo "<h3>Edit Profile</h3>";
+    }
+    ?>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
+          <input type='hidden' name='action' value='basic'>
+          <div class="form-group">
+            <label>Email Address: </label>
+            <input type="email" class="form-control" name="email" value="<?php echo $email; ?>"required>
+          </div>
+          <div class="form-group">
+            <label>First Name: </label>
+            <input type="text" class="form-control" name="first_name" value="<?php echo $first_name;?>" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name: </label>
+            <input type="text" class="form-control" name="last_name" value="<?php echo $last_name;?>" required>
+          </div>
+          <?php 
+          if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+            ?>
+            <div class="form-group">
+              <label>User Level</label>
+              <select class="form-control" name="user_level" value="<?php echo $user_level;?>" required>
+                <option>Normal</option>
+                <option>Admin</option>
+              </select>
+            </div>
+            <?php
+          }
+          ?>       
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+          </div>
+        </form>
       </div>
-    </div> <!-- /container -->
-    
-    <?php
-    if($this->session->userdata('current_user_id') == strval($id)){
+      <div class="col-md-6">
+        <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
+          <input type='hidden' name='action' value='password'>
+          <div class="form-group">
+            <label>Password: </label>
+            <input type="password" class="form-control" name="password" required>
+          </div>
+          <div class="form-group">
+            <label>Password Confirmation: </label>
+            <input type="password" class="form-control" name="passwordconf" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-primary">Update Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- /container -->
+  
+  <?php
+  if($this->session->userdata('current_user_id') == strval($id)){
     ?>
     <div class="container">
       <form class="form-horizontal" roll='form' action="/users/edit_user_action/<?php echo $id; ?>" method='post'>
+        <input type='hidden' name='action' value='description'>
         <div class="form-group">
           <label>Description: </label>
           <textarea class="form-control" rows="5" name="description"><?php echo $description;?></textarea>
@@ -108,8 +146,8 @@
       </form>
     </div>
     <?php 
-    }
-    ?>
-  </div>
+  }
+  ?>
+</div>
 </body>
 </html>

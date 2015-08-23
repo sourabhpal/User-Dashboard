@@ -34,18 +34,35 @@
   <div class="main-container">
     <div class="container">
       <?php 
-      if ($this->session->userdata('error'))
+      if ($this->session->userdata('success'))
+      {
+        ?>
+        <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Nice!</strong>
+          <?php 
+          foreach($this->session->userdata('success') as $s){
+            echo $s;
+          }
+          ?>
+        </div>
+        <?php
+        $this->session->unset_userdata('success');
+      }
+      if ($this->session->userdata('errors'))
       {
         ?>
         <div class="alert alert-danger">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Error!</strong>
           <?php 
-          echo $this->session->userdata('error');
+          foreach($this->session->userdata('errors') as $error){
+            echo $error;
+          }
           ?>
         </div>
         <?php
-        $this->session->unset_userdata('error');
+        $this->session->unset_userdata('errors');
       }
       ?>
     </div>
@@ -54,12 +71,13 @@
       if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
         echo "<h3>Add a new user</h3>";
         echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
+        echo "<form class='form-horizontal' roll='form' action='/users/add_user_action' method='post'>";
       }
       else{
         echo "<h3>Register</h3>";
+        echo "<form class='form-horizontal' roll='form' action='/users/register_action' method='post'>";
       }
       ?>
-      <form class="form-horizontal" roll='form' action='/users/register_action' method='post'>
         <div class="form-group">
           <label>Email Address: </label>
           <input type="email" class="form-control" name="email" required>

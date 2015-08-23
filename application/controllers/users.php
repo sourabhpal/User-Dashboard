@@ -19,10 +19,13 @@ class Users extends CI_Controller {
 			$this->session->set_userdata('user_level', $user['user_level']);
 			$this->session->set_userdata('LoggedIn', true);
 			$this->session->set_userdata('current_user_id', $user['id']);
+			$success[] = 'Login successful!';
+			$this->session->set_userdata('success', $success);
 			$this->show_users();
 		}
 		else{
-			$this->session->set_userdata('error', 'No matching record found!');
+			$error[] = 'No matching record found!';
+			$this->session->set_userdata('errors', $error);
 			$this->signin();
 		}
 	}
@@ -34,13 +37,17 @@ class Users extends CI_Controller {
 
 	public function register_action()
 	{
-		$this->User->add_user($this->input->post());
-		//add logic to check if the query insertion was successful, maybe show success message alert
-		if($this->session->userdata('LoggedIn')){
-			$this->show_users();
-		}
-		else{
+		$result = $this->User->validate($this->input->post());
+		if($result == "valid") {
+			$success[] = 'Registration successful!';
+			$this->session->set_userdata('success', $success);
+			$this->User->add_user($this->input->post());
 			$this->signin();
+		} 
+		else {
+			$errors = array(validation_errors());
+			$this->session->set_userdata('errors', $errors);
+			$this->register();
 		}
 	}
 
@@ -79,14 +86,22 @@ class Users extends CI_Controller {
 
 	public function add_user()
 	{
-		$this->load->view('add_user');
+		$this->load->view('register');
 	}
 
 	public function add_user_action()
 	{
-		$this->User->add_user($this->input->post());
-		//add logic to check if the query insertion was successful, maybe show success message alert
-		$this->show_users();
+		$result = $this->User->validate($this->input->post());
+		if($result == "valid") {
+			$success[] = 'User was added successfully!';
+			$this->session->set_userdata('success', $success);
+			$this->User->add_user($this->input->post());
+			$this->show_users();
+		} else {
+			$errors = array(validation_errors());
+			$this->session->set_userdata('errors', $errors);
+			$this->add_user();
+		}
 	}
 
 	public function edit_user($user_id)
@@ -97,8 +112,26 @@ class Users extends CI_Controller {
 
 	public function edit_user_action($user_id)
 	{
-		$this->User->update_user($user_id, $this->input->post());
-		$this->show_users();
+		$action = $this->input->post('action');
+		if($action == 'basic'){
+			$result = $this->User->validate_basic($this->input->post());
+		}
+		if($action == 'password'){
+			$result = $this->User->validate_password($this->input->post());
+		}
+		if($action == 'description'){
+			$result = $this->User->validate_description($this->input->post());
+		}
+		if($result == "valid") {
+			$success[] = 'Changes saved!';
+			$this->session->set_userdata('success', $success);
+			$this->User->update_user($user_id, $this->input->post());
+			$this->show_users();
+		} else {
+			$errors = array(validation_errors());
+			$this->session->set_userdata('errors', $errors);
+			$this->edit_user($user_id);
+		}
 	}
 
 	public function remove_user_action($user_id)

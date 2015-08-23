@@ -40,7 +40,11 @@
 </nav>
 <div class="main-container">
   <div class="container">
-    <form action="/users/edit_user/<?php echo $id; ?>" method="post"><button class="btn btn-lg btn-primary"><span class='glyphicon glyphicon-edit'></button></form>
+    <?php 
+    if($this->session->userdata('current_user_id') == $id){
+      echo "<form action='/users/edit_user/" . $id . "' method='post'><button class='btn btn-lg btn-primary'>Edit <span class='glyphicon glyphicon-edit'></button></form>";
+    }
+    ?>
     <h3><?php echo $first_name . " " . $last_name; ?></h3>
     <table class="table table-striped">
     <tr>
