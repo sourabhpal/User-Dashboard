@@ -6,10 +6,6 @@
 		 						FROM posts join users on posts.user_id = users.id 
 		 						WHERE wall_id = ?", array($user_id))->result_array();
 		}
-		function get_post_by_id($post_id)
-		{
-		 return $this->db->query("SELECT * FROM posts WHERE id = ?", array($post_id))->row_array();
-		}
 		function add_post($wall_id, $post)
 		{
 		 $query = "INSERT INTO posts (user_id, post, wall_id, created_at) VALUES (?,?,?,NOW())";

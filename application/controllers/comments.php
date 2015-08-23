@@ -8,15 +8,9 @@ class Comments extends CI_Controller {
 		$this->load->model('Comment');
 	}
 
-	public function add_comment()
+	public function add_comment_to_post($post_id)
 	{
-		//do some crap with the database to insert the comment.
-		$this->load->view('show_profile');
-	}
-
-	public function show_comments_by_post_id($id)
-	{
-		$this->load->view('show_profile');
-	}
-	
+		$this->Comment->add_comment_to_post($this->input->post('comment'), $post_id);
+		echo "comment added";
+	}	
 }

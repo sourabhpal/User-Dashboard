@@ -83,8 +83,8 @@
       }
       ?>
       <div class='container container-comment'>
-      <form class="form-group" action="/posts/add_comment/<?php echo $value['postID']; ?>" method="post">
-        <textarea class="form-control" name="post" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
+      <form class="form-group" action="/comments/add_comment_to_post/<?php echo $value['postID']; ?>" method="post">
+        <textarea class="form-control" name="comment" id="" cols="30" rows="5" placeholder="Enter your message here..."></textarea>
         <button type="submit" id="comment_button" class="btn btn-info">Comment <span class="glyphicon glyphicon-comment"></span></button>
       </form>
     </div>

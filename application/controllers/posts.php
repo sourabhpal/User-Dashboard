@@ -14,6 +14,5 @@ class Posts extends CI_Controller {
 		$post = $this->input->post();
 		$this->Post->add_post($wall_id, $post);
 		echo "post added";
-		// $this->show_profile($wall_id);
 	}
 }
