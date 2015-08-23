@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css">
   <style>
   </style>
-  <link rel="stylesheet" type="text/css" href="/assets/style.css">
 </head>
 <body>
  <nav class="navbar navbar-default navbar-fixed-top">
@@ -40,23 +40,23 @@
 </nav>
 <div class="main-container">
   <div class="container">
-    <a href="/users/edit_user/<?php echo $id; ?>">Edit Profile</a>
+    <form action="/users/edit_user/<?php echo $id; ?>" method="post"><button class="btn btn-primary">Edit Profile</button></form>
     <h3><?php echo $first_name . " " . $last_name; ?></h3>
-    <table>
+    <table class="table table-striped">
     <tr>
-      <td>Registered at: </td>
+      <td><strong>Registered at: </strong></td>
       <td><?php echo $created_at; ?></td>
     </tr>
     <tr>
-      <td>User ID: </td>
+      <td><strong>User ID: </strong></td>
       <td><?php echo $id; ?></td>
     </tr>
     <tr>
-      <td>Email Address: </td>
+      <td><strong>Email Address: </strong></td>
       <td><?php echo $email; ?></td>
     </tr>
     <tr>
-      <td>Description: </td>
+      <td><strong>Description: </strong></td>
       <td><?php echo $description; ?></td>
     </tr>
   </table>

@@ -40,8 +40,8 @@
   <div class="main-container">
     <div class="container">
       <div class="jumbotron">
-        <h1>Sourabh is not helping</h1>
-        <p>This assignment is so freaking long i'm so tired but i want to finish</p>
+        <h1>Welcome to our User Dashboard</h1>
+        <p>This was built using CodeIgniter MVC, MySQL, and Apache.</p>
         <p>
           <a class="btn btn-lg btn-primary" href="" role="button">Start</a>
         </p>

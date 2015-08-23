@@ -63,10 +63,10 @@
       <thead>
         <tr>
           <th>ID</th>
-          <td>Name</td>
-          <td>email</td>
-          <td>created_at</td>
-          <td>user_level</td>
+          <th>Name</th>
+          <th>email</th>
+          <th>created_at</th>
+          <th>user_level</th>
           <?php 
           if($this->session->userdata('user_level') == 'Admin'){
           echo "<td>actions</td>";
