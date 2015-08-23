@@ -23,16 +23,16 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="">Home</a></li>
+          <li class="active"><a href=""><span class="glyphicon glyphicon-home"> Home</a></li>
           <?php 
           if($this->session->userdata('LoggedIn')){
-            echo "<li><a href='/users/show_users'>Dashboard</a></li>";
-            echo "<li><a href='/main/show_profile/" . $this->session->userdata('current_user_id') ."'>Profile</a></li>";
+            echo "<li><a href='/users/show_users'><span class='glyphicon glyphicon-dashboard'> Dashboard</a></li>";
+            echo "<li><a href='/main/show_profile/" . $this->session->userdata('current_user_id') ."'><span class='glyphicon glyphicon-user'> Profile</a></li>";
           }
           ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/signin">Sign in</a></li>
+          <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"> Login/Register</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
@@ -51,7 +51,7 @@
       <div class="row">
         <div class="col-md-4">
           <h3>Manage Users</h3>
-          <p>Using this application, you'll learn how to add, remove, and edit users for the application.</p>
+          <p>Using this application, you'll be able to add, remove, and edit users for the application.</p>
         </div>
         <div class="col-md-4">
           <h3>Leave messages</h3>
