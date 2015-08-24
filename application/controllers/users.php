@@ -54,34 +54,7 @@ class Users extends CI_Controller {
 	public function show_users()
 	{
 		$users = array("users" => $this->User->get_all_users());
-		$id = array();
-		$first_name = array();
-		$last_name = array();
-		$email = array();
-		$created_at = array();
-		$user_level = array();
-		$description = array();
-		foreach($users as $key => $value){
-			foreach($value as $v){
-				array_push($id, $v['id']);
-				array_push($first_name, $v['first_name']);
-				array_push($last_name, $v['last_name']);
-				array_push($email, $v['email']);
-				array_push($created_at, $v['created_at']);
-				array_push($user_level, $v['user_level']);
-				array_push($description, $v['description']);
-			}
-		}
-		$u = array(
-			"id" => $id,
-			"first_name" => $first_name,
-			"last_name" => $last_name,
-			"email" => $email,
-			"created_at" => $created_at,
-			"user_level" => $user_level,
-			"description" => $description
-			);
-		$this->load->view('show_users', $u);
+		$this->load->view('show_users', $users);
 	}
 
 	public function add_user()

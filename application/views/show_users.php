@@ -115,14 +115,14 @@
       </thead>
       <tbody>
         <?php 
-        foreach($id as $key => $value){
+        foreach($users as $user){
           echo "<tr>";;
-          echo "<td>" . $value . "</td>";
-          echo "<td><a href='/main/show_profile/" . $value . "'>" . $first_name[$key] . " " . $last_name[$key]. "</a></td>";
-          echo "<td>" . $email[$key] . "</td>";
-          echo "<td>" . $created_at[$key] . "</td>";
+          echo "<td>" . $user['id'] . "</td>";
+          echo "<td><a href='/main/show_profile/" . $user['id'] . "'>" . $user['first_name'] . " " . $user['last_name']. "</a></td>";
+          echo "<td>" . $user['email'] . "</td>";
+          echo "<td>" . $user['created_at'] . "</td>";
           echo "<td>"; 
-          if($user_level[$key] == 9)
+          if($user['user_level'] == 9)
           {
             echo "Admin";
           }
@@ -132,12 +132,12 @@
           }
           echo "</td>";
           if($this->session->userdata('user_level') == 9){
-            echo "<td><a href='/users/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
+            echo "<td><a href='/users/edit_user/{$user['id']}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$user['id']}'>remove</a></td>";
           }
           echo "</tr>";
           ?>
           <!-- Modal -->
-          <div id="myModal<?php echo $value; ?>" class="modal fade" role="dialog">
+          <div id="myModal<?php echo $user['id']; ?>" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <!-- Modal content-->
               <div class="modal-content">
