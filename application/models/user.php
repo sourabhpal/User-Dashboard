@@ -9,7 +9,9 @@ class User extends CI_Model{
 	{
 		$email = $post['email'];
 		$password = $post['password'];
-		return $this->db->query("SELECT * FROM users WHERE email = ? and password = ?", array($email, $password))->row_array();
+		$time = $this->db->query("SELECT created_at FROM users WHERE email = ?", array($email))->row_array();
+		$encrypted_password = md5($time['created_at'].$password);
+		return $this->db->query("SELECT * FROM users WHERE email = ? and password = ?", array($email, $encrypted_password))->row_array();
 	}
 
 	function get_user_by_id($id)
@@ -25,8 +27,12 @@ class User extends CI_Model{
 		else{
 			$user_level = "Admin";
 		}
-		$query = "INSERT INTO users (first_name, last_name, email, password, user_level, created_at, updated_at) VALUES (?,?,?,?,?, NOW(), NOW())";
-		$values = array($user['first_name'], $user['last_name'], $user['email'], $user['password'], $user_level); 
+		date_default_timezone_set("America/Los_Angeles");
+		$t = time();
+		$now = date("Y-m-d H:i:s",$t);
+		$encrypted_password = md5($now.$user['password']);
+		$query = "INSERT INTO users (first_name, last_name, email, password, user_level, created_at, updated_at) VALUES (?,?,?,?,?,?,?)";
+		$values = array($user['first_name'], $user['last_name'], $user['email'], $encrypted_password, $user_level, $now, $now); 
 		return $this->db->query($query, $values);
 	} 
 
@@ -51,8 +57,10 @@ class User extends CI_Model{
 		foreach($info as $key => $value){
 			$userInfo[$key] = $info[$key];
 		}
+		$time = $this->db->query("SELECT created_at FROM users WHERE id = ?", array($user_id))->row_array();
+		$encrypted_password = md5($time['created_at'].$userInfo['password']);
 		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, description = ?, user_level = ?, password = ?, updated_at = NOW() WHERE id = ?";
-		$values = array($userInfo['first_name'], $userInfo['last_name'], $userInfo['email'], $userInfo['description'], $userInfo['user_level'], $userInfo['password'], $userInfo['id']);
+		$values = array($userInfo['first_name'], $userInfo['last_name'], $userInfo['email'], $userInfo['description'], $userInfo['user_level'], $encrypted_password, $userInfo['id']);
 		return $this->db->query($query, $values);
 	}
 
@@ -73,8 +81,8 @@ class User extends CI_Model{
 	function validate_basic($post){
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|max_length[45]|required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|max_length[45]}required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-		$this->form_validation->set_message('is_unique', 'The email has been registered by another user!');
+		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		// $this->form_validation->set_message('is_unique', 'The email has been registered by another user!');
 		if($this->form_validation->run()) {
 			return "valid";
 		} else {

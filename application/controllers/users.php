@@ -21,7 +21,7 @@ class Users extends CI_Controller {
 			$this->session->set_userdata('current_user_id', $user['id']);
 			$success[] = 'Login successful!';
 			$this->session->set_userdata('success', $success);
-			$this->show_users();
+			redirect('/users/show_users');
 		}
 		else{
 			$error[] = 'No matching record found!';
@@ -42,7 +42,7 @@ class Users extends CI_Controller {
 			$success[] = 'Registration successful!';
 			$this->session->set_userdata('success', $success);
 			$this->User->add_user($this->input->post());
-			$this->signin();
+			redirect("/users/signin");
 		} 
 		else {
 			$errors = array(validation_errors());
@@ -69,11 +69,11 @@ class Users extends CI_Controller {
 			$success[] = 'User was added successfully!';
 			$this->session->set_userdata('success', $success);
 			$this->User->add_user($this->input->post());
-			$this->show_users();
+			redirect('/users/show_users');
 		} else {
 			$errors = array(validation_errors());
 			$this->session->set_userdata('errors', $errors);
-			$this->add_user();
+			redirect('/users/add_user');
 		}
 	}
 
@@ -99,7 +99,7 @@ class Users extends CI_Controller {
 			$success[] = 'Changes saved!';
 			$this->session->set_userdata('success', $success);
 			$this->User->update_user($user_id, $this->input->post());
-			$this->show_users();
+			redirect('/users/show_users');
 		} else {
 			$errors = array(validation_errors());
 			$this->session->set_userdata('errors', $errors);

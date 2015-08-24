@@ -83,7 +83,7 @@
           <input type='hidden' name='action' value='basic'>
           <div class="form-group">
             <label>Email Address: </label>
-            <input type="email" class="form-control" name="email" value="<?php echo $email; ?>"required>
+            <input type="email" class="form-control" name="email" value="<?php echo $email; ?>"readonly>
           </div>
           <div class="form-group">
             <label>First Name: </label>
