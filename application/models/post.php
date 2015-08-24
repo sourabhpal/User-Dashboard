@@ -2,7 +2,7 @@
 	class Post extends CI_Model{
 		function get_all_posts_by_wall_id($user_id)
 		{
-		 return $this->db->query("SELECT posts.id as postID, post, first_name, last_name, posts.created_at as created_at
+		 return $this->db->query("SELECT posts.id as postID, post, first_name, last_name, date_format(posts.created_at, '%M %d, %Y @ %r') as created_at
 		 						FROM posts join users on posts.user_id = users.id 
 		 						WHERE wall_id = ?", array($user_id))->result_array();
 		}

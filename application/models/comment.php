@@ -2,7 +2,7 @@
 	class Comment extends CI_Model{
 		function get_all_comments_by_post_id($post_id)
 		{
-		 return $this->db->query("SELECT first_name, last_name, comments.comment, comments.created_at, post_id 
+		 return $this->db->query("SELECT first_name, last_name, comments.comment, date_format(comments.created_at, '%M %d, %Y @ %r') as created_at, post_id 
 									FROM users
 									JOIN comments on users.id = comments.user_id
 									JOIN posts on comments.post_id = posts.id 

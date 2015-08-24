@@ -87,7 +87,12 @@
     <?php 
     if($this->session->userdata('user_level') == 'Admin'){
       echo "<h3>Manage Users</h3>";
-      echo "<a class='pull-right' href='/users/register'>Add new</a>";
+      // echo "<a class='pull-right' href='/users/register'>Add new</a>";
+    ?>  
+      <form class="form-group" action="/users/register" method="post">
+        <button type="submit" id="post_button" class="btn btn-lg btn-success pull-right"><span class="glyphicon glyphicon-plus"></span></button>
+      </form>
+    <?php
     }
     else{
       echo "<h3>All Users</h3>";
@@ -98,12 +103,12 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>email</th>
-          <th>created_at</th>
-          <th>user_level</th>
+          <th>Email</th>
+          <th>Join Date</th>
+          <th>User Level</th>
           <?php 
           if($this->session->userdata('user_level') == 'Admin'){
-          echo "<td>actions</td>";
+          echo "<th>Actions</th>";
           }
            ?>
         </tr>
