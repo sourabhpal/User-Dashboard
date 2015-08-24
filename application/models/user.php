@@ -22,10 +22,10 @@ class User extends CI_Model{
 	function add_user($user)
 	{
 		if($this->get_all_users()){
-			$user_level = "Normal";
+			$user_level = 0;
 		}
 		else{
-			$user_level = "Admin";
+			$user_level = 9;
 		}
 		date_default_timezone_set("America/Los_Angeles");
 		$t = time();
@@ -41,7 +41,6 @@ class User extends CI_Model{
 		$this->db->query("DELETE FROM comments WHERE comments.user_id = ?", array($user_id));
 		
 		$result = $this->db->query("SELECT posts.id FROM posts WHERE posts.user_id = ?", array($user_id))->result_array(); 
-		// var_dump($result);
 		foreach($result as $r){
 			foreach($r as $key=>$value){
 				$this->db->query("DELETE FROM comments WHERE comments.post_id = ?", array($value));	
@@ -58,7 +57,12 @@ class User extends CI_Model{
 			$userInfo[$key] = $info[$key];
 		}
 		$time = $this->db->query("SELECT created_at FROM users WHERE id = ?", array($user_id))->row_array();
-		$encrypted_password = md5($time['created_at'].$userInfo['password']);
+		if(array_key_exists('password', $info)){
+			$encrypted_password = md5($time['created_at'].$userInfo['password']);
+		}
+		else{
+			$encrypted_password = $userInfo['password'];
+		}
 		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, description = ?, user_level = ?, password = ?, updated_at = NOW() WHERE id = ?";
 		$values = array($userInfo['first_name'], $userInfo['last_name'], $userInfo['email'], $userInfo['description'], $userInfo['user_level'], $encrypted_password, $userInfo['id']);
 		return $this->db->query($query, $values);
@@ -81,8 +85,6 @@ class User extends CI_Model{
 	function validate_basic($post){
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|max_length[45]|required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|max_length[45]}required');
-		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-		// $this->form_validation->set_message('is_unique', 'The email has been registered by another user!');
 		if($this->form_validation->run()) {
 			return "valid";
 		} else {

@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dashboard` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `dashboard`;
 -- MySQL dump 10.13  Distrib 5.6.24, for osx10.8 (x86_64)
 --
 -- Host: 127.0.0.1    Database: dashboard
@@ -32,7 +34,7 @@ CREATE TABLE `comments` (
   KEY `user_id_idx` (`user_id`),
   KEY `post_id_idx` (`post_id`),
   CONSTRAINT `id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'this is a comment',3,1,'2015-08-22 08:40:12'),(2,'this is another comment',3,1,'2015-08-22 08:40:21'),(3,'this is a third comment',3,1,'2015-08-22 08:40:24'),(4,'cool comment',4,2,'2015-08-22 08:40:26'),(5,'so many comments',5,4,'2015-08-22 08:40:31'),(6,'wow',5,4,'2015-08-22 08:40:34'),(7,'such comment',5,4,'2015-08-22 08:40:37'),(8,'good suggestion',8,5,'2015-08-22 08:40:44'),(9,'0',9,9,'2015-08-23 11:18:12'),(10,'0',9,9,'2015-08-23 11:18:50'),(11,'dddd',9,9,'2015-08-23 11:18:57'),(12,'testing comment feature',9,11,'2015-08-23 11:19:09'),(13,'hellooo',5,14,'2015-08-23 11:22:39');
+INSERT INTO `comments` VALUES (22,'Great man, let\'s try to work on your CSS a bit...',24,19,'2015-08-24 15:59:48'),(23,'But mine is the first comment!!',24,21,'2015-08-24 16:14:13'),(24,'Now it\'s a party!',22,22,'2015-08-24 16:15:15'),(25,'I\'m here now!!',25,23,'2015-08-24 16:16:17');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +65,7 @@ CREATE TABLE `posts` (
   KEY `wall_id_idx` (`wall_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `wall_id` FOREIGN KEY (`wall_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +74,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'hello',3,'2015-08-22 08:43:21',5),(2,'goodbye',4,'2015-08-22 08:43:21',5),(3,'this is a post',5,'2015-08-22 08:43:21',5),(4,'some random crap',8,'2015-08-22 08:43:21',5),(5,'hi sue',9,'2015-08-23 10:34:54',5),(6,'hi sue again',9,'2015-08-23 10:35:54',5),(7,'hi sue again',9,'2015-08-23 10:38:59',5),(8,'and',9,'2015-08-23 10:39:10',5),(9,'eeeee',9,'2015-08-23 10:39:42',5),(10,'eeeee',9,'2015-08-23 10:40:15',5),(11,'testing wall',10,'2015-08-23 10:44:20',5),(12,'my wall',10,'2015-08-23 10:44:33',10),(13,'whats up',5,'2015-08-23 11:21:55',10),(14,'Hi Sourabh!',5,'2015-08-23 11:22:19',8);
+INSERT INTO `posts` VALUES (19,'Hey Ray, how you doing?',22,'2015-08-24 15:59:04',24),(20,'Hi buddy!',23,'2015-08-24 16:13:23',24),(21,'Hey I am the first one to post on your wall!',23,'2015-08-24 16:13:50',22),(22,'Sue no one has written on your wall yet...how crazy!',24,'2015-08-24 16:14:33',23),(23,'Hey where is everyone??',22,'2015-08-24 16:15:54',25);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,12 +91,12 @@ CREATE TABLE `users` (
   `last_name` varchar(45) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `user_level` varchar(45) DEFAULT NULL,
+  `user_level` smallint(6) DEFAULT NULL,
   `description` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +105,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (3,'Ray','O','ray@ray.ray','ray','Admin','WANT TO LEARN CSS??','2015-08-21 21:58:05','2015-08-23 08:49:35'),(4,'ASDF','ASDF','ASDF@ASDF.COM','asdfasfd','Normal','asdffff','2015-08-21 22:49:59','2015-08-21 22:49:59'),(5,'Sue','Su','sue@su.com','asdfasdf','Admin','sue su','2015-08-20 00:00:00','2015-08-22 11:39:20'),(8,'Sourabh','Pal','sourabh@pal.com','asdfasdf','Admin','so','2015-07-07 00:00:00','2015-08-09 00:00:00'),(9,'asdf','asdf','asdf@asdf.asdf','asdfasdf','Admin','no description','2015-08-22 09:37:28','2015-08-22 11:28:43'),(10,'hello','kitty','hello@kitty.com','hellokitty','Admin','HELLO I\'M KITTY','2015-08-22 09:41:42','2015-08-22 11:39:28'),(11,'New','User','newuser@new.user','asdfasdf','Normal','this is a new user','2015-08-22 11:29:05','2015-08-22 11:29:05'),(12,'Cool','User','cooluser@cool.user','asdfasdf','Normal','this is a cool user','2015-08-22 11:31:00','2015-08-22 11:31:00'),(13,'sue','su','suesu@gmail.com','asdfasdf','Normal',NULL,'2015-08-22 20:37:03','2015-08-22 20:37:03'),(14,'Bob','B','bob@bob.bob','bobbob','Admin','i\'m bob','2015-06-06 00:00:00','2015-07-07 00:00:00');
+INSERT INTO `users` VALUES (22,'Sourabh','Pal','sourabh@pal-tech.co','c83a8aab064dcbdc156e5435eefef516',9,NULL,'2015-08-24 15:54:53','2015-08-24 15:54:53'),(23,'Sue','Su','sue@gmail.com','848b1950acd5a8b656fb1fd100f01456',0,NULL,'2015-08-24 15:55:29','2015-08-24 16:12:06'),(24,'Raymon','Oleaga','ray@designbuddy.com','711a0712c124675bb00260f2e7ea989b',0,NULL,'2015-08-24 15:58:47','2015-08-24 15:58:47'),(25,'Ron','Sim','ron@gmail.com','a3f910505b46ed1c371f1c042196fe5d',0,NULL,'2015-08-24 16:15:41','2015-08-24 16:15:41');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -116,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-23 11:23:26
+-- Dump completed on 2015-08-24 16:18:17

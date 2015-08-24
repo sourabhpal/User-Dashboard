@@ -99,8 +99,8 @@
             <div class="form-group">
               <label>User Level</label>
               <select class="form-control" name="user_level" value="<?php echo $user_level;?>" required>
-                <option>Normal</option>
-                <option>Admin</option>
+                <option value="0">Normal</option>
+                <option value="9">Admin</option>
               </select>
             </div>
             <?php
