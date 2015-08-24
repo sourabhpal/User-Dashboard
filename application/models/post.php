@@ -4,7 +4,7 @@
 		{
 		 return $this->db->query("SELECT posts.id as postID, post, first_name, last_name, date_format(posts.created_at, '%M %d, %Y @ %r') as created_at
 		 						FROM posts join users on posts.user_id = users.id 
-		 						WHERE wall_id = ?", array($user_id))->result_array();
+		 						WHERE wall_id = ? ORDER BY created_at DESC", array($user_id))->result_array();
 		}
 
 		function add_post($wall_id, $post)

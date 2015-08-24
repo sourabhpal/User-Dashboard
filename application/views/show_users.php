@@ -85,7 +85,7 @@
     </div>
   <div class="container">
     <?php 
-    if($this->session->userdata('user_level') == 'Admin'){
+    if($this->session->userdata('user_level') == 9){
       echo "<h3>Manage Users</h3>";
       // echo "<a class='pull-right' href='/users/register'>Add new</a>";
     ?>  
@@ -107,7 +107,7 @@
           <th>Join Date</th>
           <th>User Level</th>
           <?php 
-          if($this->session->userdata('user_level') == 'Admin'){
+          if($this->session->userdata('user_level') == 9){
           echo "<th>Actions</th>";
           }
            ?>
@@ -121,8 +121,17 @@
           echo "<td><a href='/main/show_profile/" . $value . "'>" . $first_name[$key] . " " . $last_name[$key]. "</a></td>";
           echo "<td>" . $email[$key] . "</td>";
           echo "<td>" . $created_at[$key] . "</td>";
-          echo "<td>" . $user_level[$key] . "</td>";
-          if($this->session->userdata('user_level') == 'Admin'){
+          echo "<td>"; 
+          if($user_level[$key] == 9)
+          {
+            echo "Admin";
+          }
+          else
+          {
+            echo "Normal";
+          }
+          echo "</td>";
+          if($this->session->userdata('user_level') == 9){
             echo "<td><a href='/users/edit_user/{$value}'>edit</a> | <a href='#' data-toggle='modal' data-target='#myModal{$value}'>remove</a></td>";
           }
           echo "</tr>";

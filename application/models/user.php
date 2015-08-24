@@ -32,6 +32,16 @@ class User extends CI_Model{
 
 	function delete_user_by_id($user_id)
 	{
+		$this->db->query("DELETE FROM comments WHERE comments.user_id = ?", array($user_id));
+		
+		$result = $this->db->query("SELECT posts.id FROM posts WHERE posts.user_id = ?", array($user_id))->result_array(); 
+		// var_dump($result);
+		foreach($result as $r){
+			foreach($r as $key=>$value){
+				$this->db->query("DELETE FROM comments WHERE comments.post_id = ?", array($value));	
+			}
+		}
+		$this->db->query("DELETE FROM posts WHERE posts.user_id = ?", array($user_id));
 		return $this->db->query("DELETE FROM users WHERE id = ?", $user_id);	
 	}
 	

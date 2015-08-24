@@ -69,7 +69,7 @@
     </div>
     <div class="container">
      <?php 
-     if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin' && $this->session->userdata('current_user_id')!=$id){
+     if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')==9 && $this->session->userdata('current_user_id')!=$id){
       echo "<h3>Edit user #(" . $id . ")</h3>";
       echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
     }
@@ -94,7 +94,7 @@
             <input type="text" class="form-control" name="last_name" value="<?php echo $last_name;?>" required>
           </div>
           <?php 
-          if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+          if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')==9){
             ?>
             <div class="form-group">
               <label>User Level</label>

@@ -68,7 +68,7 @@
     </div>
     <div class="container">
       <?php 
-      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+      if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')==9){
         echo "<h3>Add a new user</h3>";
         echo "<a class='pull-right' href='/users/show_users'>Return to Dashboard</a>";
         echo "<form class='form-horizontal' roll='form' action='/users/add_user_action' method='post'>";
@@ -101,7 +101,7 @@
         <div class="form-group">
           <button type="submit" class="btn btn-lg btn-primary">
             <?php 
-            if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin'){
+            if($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')==9){
               echo "Create";
             }
             else{
@@ -112,7 +112,7 @@
         </div>
       </form>
       <?php 
-      if(!($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')=='Admin')){
+      if(!($this->session->userdata('LoggedIn') && $this->session->userdata('user_level')==9)){
         echo "<a href='/users/signin'>Already have an account? Login</a>";
       }
       ?>
