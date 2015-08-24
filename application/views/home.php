@@ -19,11 +19,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="">Test App</a>
+        <span class="navbar-brand">SS|DB</span>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href=""><span class="glyphicon glyphicon-home"> Home</a></li>
+          <li class="active"><a href="/"><span class="glyphicon glyphicon-home"> Home</a></li>
           <?php 
           if($this->session->userdata('LoggedIn')){
             echo "<li><a href='/users/show_users'><span class='glyphicon glyphicon-dashboard'> Dashboard</a></li>";
@@ -32,7 +32,7 @@
           ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"> Login/Register</a></li>
+          <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"> Login</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
@@ -43,7 +43,7 @@
         <h1>Welcome to our User Dashboard</h1>
         <p>This was built using CodeIgniter MVC, MySQL, and Apache.</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="" role="button">Start</a>
+          <a class="btn btn-lg btn-primary" href="/users/register" role="button">Get Started</a>
         </p>
       </div>
     </div> <!-- /container -->

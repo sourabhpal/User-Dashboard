@@ -20,7 +20,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </button>
-       <a class="navbar-brand" href="#">Test App</a>
+       <span class="navbar-brand">SS|DB</span>
      </div>
      <div id="navbar" class="navbar-collapse collapse">
        <ul class="nav navbar-nav">
@@ -75,13 +75,44 @@
       echo "<div class='container container-post'>";
       echo "<div class='panel panel-default'>";
       echo "<div class='panel-heading'><h5>" . $value['first_name'] . " " . $value['last_name'] . ' wrote:';
-      echo "<span class='pull-right'>" . $value['created_at'] . '</span></h5></div>';
+      date_default_timezone_set("America/Los_Angeles");
+      $t = time();
+      $now = date("Y-m-d H:i:s",$t);
+      $time1 = strtotime($now);
+      $time2 = strtotime($value['created_at']);
+      $timeDiff = intval(abs($time1 - $time2) / 60);
+      $fancyTime = date("M d, Y H:i:s",$time2);
+      if($timeDiff > (24*60)){
+        echo "<span class='pull-right'>" . $fancyTime . '</span></h5></div>';
+      }
+      else if($timeDiff > 60){
+        echo "<span class='pull-right'>" . intval($timeDiff/60) . ' hours ago</span></h5></div>';
+      }
+      else{
+        echo "<span class='pull-right'>" . $timeDiff . ' minutes ago</span></h5></div>';
+      }
+      // echo "<span class='pull-right'>" . $value['created_at'] . '</span></h5></div>';
       echo "<div class='panel-body'>" . $value['post'] . "</div></div>";
       foreach($value['comments'] as $c){
         echo "<div class='container container-comment'>";
         echo "<div class='panel panel-default'>";
         echo "<div class='panel-heading'>" . $c['first_name'] . " " . $c['last_name'] . ' wrote:';
-        echo "<span class='pull-right'>" . $c['created_at'] . '</span></div>';
+        $t2 = time();
+        $now2 = date("Y-m-d H:i:s",$t2);
+        $time3 = strtotime($now2);
+        $time4 = strtotime($c['created_at']);
+        $timeDiff2 = intval(abs($time3 - $time4) / 60);
+        $fancyTime2 = date("M d, Y H:i:s",$time4);
+        if($timeDiff2 > (24*60)){
+          echo "<span class='pull-right'>" . $fancyTime2 . '</span></h5></div>';
+        }
+        else if($timeDiff2 > 60){
+          echo "<span class='pull-right'>" . intval($timeDiff2/60) . ' hours ago</span></h5></div>';
+        }
+        else{
+          echo "<span class='pull-right'>" . $timeDiff2 . ' minutes ago</span></h5></div>';
+        }
+        // echo "<span class='pull-right'>" . $c['created_at'] . '</span></div>';
         echo "<div class='panel-body'>" . $c['comment'] . "</div></div>";
         echo "</div>";
       }
